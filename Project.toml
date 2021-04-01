@@ -1,0 +1,4 @@
+name = "GraphQLCodegen"
+uuid = "3c34e5fb-3c4e-40b1-8aed-0e0bba006cbc"
+authors = ["Mark Halonen <halonen.mark@gmail.com>"]
+version = "0.1.0"
