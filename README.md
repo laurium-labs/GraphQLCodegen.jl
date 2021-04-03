@@ -8,3 +8,6 @@ This project exports:
 
 ### Usage
 See https://github.com/laurium-labs/GithubGraphQLExample.jl as an example project using a code generation workflow. 
+
+### Why
+See our blog post: https://www.lauriumlabs.com/blog/julia-code-generation-with-graphql
