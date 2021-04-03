@@ -1,6 +1,6 @@
 # GraphQLCodegen.jl
 
-This project has facilitates a codegen workflow when consuming GraphQL apis in Julia.
+This project facilitates a codegen workflow when consuming GraphQL apis in Julia.
 
 This project exports: 
 - the `gql` macro which helps the code generator to find the GraphQL queries
