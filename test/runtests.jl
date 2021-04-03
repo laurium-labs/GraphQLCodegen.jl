@@ -2,6 +2,8 @@ using Test
 using JSON
 using GraphQLCodegen
 
+
+
 let 
     t1 = @NamedTuple begin
         a::Int
@@ -21,7 +23,6 @@ let
     @test parse_nt(t1, d1) == ((a=1),)
 
     d2 = JSON.parse("""{"a": null}""")
-    @info parse_nt(t1, d2)
     @test parse_nt(t1, d2) == ((a=nothing),)
 end 
 
@@ -58,6 +59,5 @@ let
     @test s == "my graphql string"
 end
 
+include("./waldo_test.jl")
 
-# @test parse_nt(t2, d2) == 
-# @test parse_nt(t2, d2) == ((a=1),))
