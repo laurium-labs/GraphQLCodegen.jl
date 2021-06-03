@@ -60,4 +60,6 @@ let
 end
 
 include("./waldo_test.jl")
+include("./steelhead_test.jl")
+
 
