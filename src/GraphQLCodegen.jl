@@ -1,11 +1,11 @@
 module GraphQLCodegen
 
   parse_nt(T::Any, s) = convert(T,s)
-  parse_nt(::Type{Union{T2, Nothing}}, vec::Vector) where T2 = parse_nt.(eltype(T2), vec)
-  parse_nt(::Type{Vector{T2}}, vec::Vector) where T2 = parse_nt.(T2, vec)
+  parse_nt(::Type{Union{T2, Nothing}}, vec::Vector) where T2 = isempty(vec) ? [] : parse_nt.(eltype(T2), vec)
+  parse_nt(::Type{Vector{T2}}, vec::Vector) where T2 = isempty(vec) ? [] : parse_nt.(T2, vec)
   
   function parse_nt(::Type{Vector{Union{T2, Nothing}}}, vec::Vector) where T2
-    map(v -> isnothing(v) ? nothing : parse_nt(T2, v), vec )
+    isempty(vec) ? [] : map(v -> isnothing(v) ? nothing : parse_nt(T2, v), vec)
   end
     
   function parse_nt(T::Type, d::Dict)::T
