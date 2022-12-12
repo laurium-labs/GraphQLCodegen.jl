@@ -8,7 +8,7 @@ module GraphQLCodegen
     isempty(vec) ? [] : map(v -> isnothing(v) ? nothing : parse_nt(T2, v), vec)
   end
     
-  function parse_nt(::Type{Union{T, Nothing}}, d::Dict)::T 
+  function parse_nt(::Type{Union{T, Nothing}}, d::Dict) where {T} 
     return (haskey(d, String(t)) ? parse_nt(fieldtype(T, t), d[String(t)]) : nothing for t in fieldnames(T))
   end
   function parse_nt(T::Type, d::Dict)::T
