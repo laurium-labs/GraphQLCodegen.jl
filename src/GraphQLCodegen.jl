@@ -1,4 +1,5 @@
 module GraphQLCodegen
+using InteractiveUtils: subtypes
 
 function parse_nt(T::Type, s::String)
   if string(T) == s
@@ -6,7 +7,7 @@ function parse_nt(T::Type, s::String)
   elseif s ∈ string.(subtypes(T))
     return eval(Meta.parse(s))
   else
-    return throw(ArgumentError("String $s cannot be converted to $T or any of its subtypes ($(subtypes(T)))"))
+    return convert(T, s)
   end
 end
 
