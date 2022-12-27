@@ -1,16 +1,18 @@
 module GraphQLCodegen
-using InteractiveUtils: subtypes
 
 function parse_nt(T::Type, s::String)
-  if string(T) == s
+  if T <: AbstractString
+    return s
+  elseif string(T) == s
     return T
-  elseif s ∈ string.(subtypes(T))
-    return eval(Meta.parse(s))
+  elseif s ∈ string.(instances(T))
+    return argmax(inst -> string(inst) == s, instances(T))
   else
     return convert(T, s)
   end
 end
 
+parse_nt(::Type{Union{T2,Nothing}}, s::String) where {T2} = parse_nt(T2, s)
 parse_nt(T::Any, s) = convert(T, s)
 parse_nt(::Type{Union{T2,Nothing}}, vec::Vector) where {T2} = isempty(vec) ? [] : parse_nt.(eltype(T2), vec)
 parse_nt(::Type{Vector{T2}}, vec::Vector) where {T2} = isempty(vec) ? [] : parse_nt.(T2, vec)
